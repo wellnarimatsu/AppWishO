@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.FormularioDesejos">
+
+
+        <ImageView
+            android:id="@+id/imagem_form"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <EditText
+            android:id="@+id/nome_form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imagem_form"
+            tools:text="MacBook Air M1" />
+
+        <EditText
+            android:id="@+id/descricao_form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+
+
+            app:layout_constraintEnd_toEndOf="@id/nome_form"
+            app:layout_constraintStart_toStartOf="@id/nome_form"
+            app:layout_constraintTop_toBottomOf="@id/nome_form"
+            tools:text="Comprar este item para aprender swift" />
+
+        <EditText
+            android:id="@+id/valor_form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+
+
+            app:layout_constraintEnd_toEndOf="@id/nome_form"
+            app:layout_constraintStart_toStartOf="@id/nome_form"
+            app:layout_constraintTop_toBottomOf="@id/descricao_form"
+            tools:text="R$ 7.000,00" />
+
+        <EditText
+            android:id="@+id/link_form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+
+
+            app:layout_constraintEnd_toEndOf="@id/nome_form"
+            app:layout_constraintStart_toStartOf="@id/nome_form"
+            app:layout_constraintTop_toBottomOf="@id/valor_form"
+            tools:text="www.wellisonstore.com" />
+
+        <Button
+            android:id="@+id/button_add_desejo_form"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/nome_form"
+            app:layout_constraintStart_toStartOf="@id/nome_form"
+            app:layout_constraintTop_toBottomOf="@id/link_form"
+            app:layout_constraintVertical_bias="1"
+            tools:text="Adicionar Desejo" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
+
