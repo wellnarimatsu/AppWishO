@@ -9,13 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.FormularioDesejos">
+        tools:context=".ui.FormularioDesejos"
+        android:background="@color/azul_wisho">
 
 
         <ImageView
             android:id="@+id/imagem_form"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
+
+            android:scaleType="centerCrop"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,68 +26,89 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:background="@color/amarelo_wisho"
 
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <EditText
-            android:id="@+id/nome_form"
+            tools:srcCompat="@tools:sample/avatars"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nome_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:hint="@string/label"
             app:layout_constraintTop_toBottomOf="@id/imagem_form"
-            tools:text="MacBook Air M1" />
+            app:layout_constraintStart_toStartOf="@id/imagem_form"
+            app:layout_constraintEnd_toEndOf="@id/imagem_form"
+            android:textColorHint="@color/amarelo_wisho"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
-        <EditText
-            android:id="@+id/descricao_form"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nome_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/desc_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:hint="@string/label"
+            app:layout_constraintTop_toBottomOf="@id/nome_form_layout"
+            app:layout_constraintStart_toStartOf="@id/nome_form_layout"
+            app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descricao_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
-            app:layout_constraintEnd_toEndOf="@id/nome_form"
-            app:layout_constraintStart_toStartOf="@id/nome_form"
-            app:layout_constraintTop_toBottomOf="@id/nome_form"
-            tools:text="Comprar este item para aprender swift" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/valor_form"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/valor_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:hint="@string/label"
+            app:layout_constraintTop_toBottomOf="@id/desc_form_layout"
+            app:layout_constraintStart_toStartOf="@id/nome_form_layout"
+            app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/valor_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
-            app:layout_constraintEnd_toEndOf="@id/nome_form"
-            app:layout_constraintStart_toStartOf="@id/nome_form"
-            app:layout_constraintTop_toBottomOf="@id/descricao_form"
-            tools:text="R$ 7.000,00" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/link_form"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/link_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:hint="@string/label"
+            app:layout_constraintTop_toBottomOf="@id/valor_form_layout"
+            app:layout_constraintStart_toStartOf="@id/nome_form_layout"
+            app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/link_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-            app:layout_constraintEnd_toEndOf="@id/nome_form"
-            app:layout_constraintStart_toStartOf="@id/nome_form"
-            app:layout_constraintTop_toBottomOf="@id/valor_form"
-            tools:text="www.wellisonstore.com" />
+
 
         <Button
             android:id="@+id/button_add_desejo_form"
@@ -92,11 +116,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/nome_form"
-            app:layout_constraintStart_toStartOf="@id/nome_form"
-            app:layout_constraintTop_toBottomOf="@id/link_form"
+            app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
+            app:layout_constraintStart_toStartOf="@id/nome_form_layout"
+            app:layout_constraintTop_toBottomOf="@id/link_form_layout"
             app:layout_constraintVertical_bias="1"
-            tools:text="Adicionar Desejo" />
+            tools:text="Adicionar Desejo"
+            android:backgroundTint="@color/amarelo_wisho"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

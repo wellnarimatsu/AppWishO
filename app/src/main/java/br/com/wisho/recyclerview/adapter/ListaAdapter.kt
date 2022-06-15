@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.wisho.R
+import br.com.wisho.databinding.CardViewBinding
 import br.com.wisho.model.Desejo
 
 class ListaAdapter(
@@ -17,16 +18,16 @@ class ListaAdapter(
 
     private val desejos = desejos.toMutableList()
 
-    class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(private val binding: CardViewBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun vincular(desejos: Desejo){
-            val nome = itemView.findViewById<TextView>(R.id.nome_card)
+            val nome = binding.nomeCard
             nome.text = desejos.nome
-            val descricao = itemView.findViewById<TextView>(R.id.descricao_card)
+            val descricao = binding.descricaoCard
             descricao.text = desejos.descricao
-            val valor = itemView.findViewById<TextView>(R.id.valor_card)
+            val valor = binding.valorCard
             valor.text = desejos.valor.toPlainString()
-            val link = itemView.findViewById<TextView>(R.id.link_card)
+            val link = binding.linkCard
             link.text = desejos.link
 
         }
@@ -36,9 +37,9 @@ class ListaAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.card_view, parent, false)
+        val binding = CardViewBinding.inflate(inflater,parent,false)
 
-        return ViewHolder(view)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

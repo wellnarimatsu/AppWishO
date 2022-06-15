@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import br.com.wisho.dao.DesejosDao
+import br.com.wisho.databinding.ActivityMainBinding
 import br.com.wisho.model.Desejo
 import br.com.wisho.recyclerview.adapter.ListaAdapter
 import br.com.wisho.ui.Formulario
@@ -12,12 +13,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     private val dao = DesejosDao()
     private val adapter =  ListaAdapter(context = this, desejos = dao.buscaTodos())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         configuraFab()
         configuraRecyclerView()
 
@@ -30,20 +35,20 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun configuraFab(){
-        val fab = findViewById<FloatingActionButton>(R.id.fab_button)
+        val fab = binding.fabButton
+
         fab.setOnClickListener {
             vaiParaFormualrio()
         }
     }
 
     private fun vaiParaFormualrio(){
-        Intent(this,Formulario::class.java)
+        val intent = Intent(this,Formulario::class.java)
         startActivity(intent)
 
     }
     private fun configuraRecyclerView(){
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
     }
 }
