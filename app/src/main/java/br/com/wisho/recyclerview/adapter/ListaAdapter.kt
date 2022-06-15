@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.wisho.R
 import br.com.wisho.databinding.CardViewBinding
 import br.com.wisho.model.Desejo
+import java.math.BigDecimal
+import java.text.NumberFormat
+import java.util.*
 
 class ListaAdapter(
     private val context: Context,
@@ -18,6 +21,7 @@ class ListaAdapter(
 
     private val desejos = desejos.toMutableList()
 
+
     class ViewHolder(private val binding: CardViewBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun vincular(desejos: Desejo){
@@ -26,12 +30,21 @@ class ListaAdapter(
             val descricao = binding.descricaoCard
             descricao.text = desejos.descricao
             val valor = binding.valorCard
-            valor.text = desejos.valor.toPlainString()
+            val valorEmMoeda: String = formatarParaReal(desejos.valor)
+            valor.text = valorEmMoeda
             val link = binding.linkCard
             link.text = desejos.link
 
-        }
 
+
+
+
+
+        }
+        private fun formatarParaReal(valor : BigDecimal): String{
+            val formatadorMoeda = NumberFormat.getCurrencyInstance(Locale("pt","br"))
+            val valorEmMoeda : String = formatadorMoeda.format(valor)
+            return valorEmMoeda}
 
     }
 

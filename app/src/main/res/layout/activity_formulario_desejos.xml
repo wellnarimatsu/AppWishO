@@ -10,15 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.FormularioDesejos"
-        android:background="@color/azul_wisho">
+        android:background="@color/white">
 
 
         <ImageView
             android:id="@+id/imagem_form"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
 
             android:scaleType="centerCrop"
+            android:clickable="true"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,18 +29,18 @@
             android:layout_marginStart="8dp"
             android:background="@color/amarelo_wisho"
 
-            tools:srcCompat="@tools:sample/avatars"
+            app:srcCompat="@drawable/img_carregar_img"
             />
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nome_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/label"
             app:layout_constraintTop_toBottomOf="@id/imagem_form"
             app:layout_constraintStart_toStartOf="@id/imagem_form"
             app:layout_constraintEnd_toEndOf="@id/imagem_form"
             android:textColorHint="@color/amarelo_wisho"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Nome"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +55,8 @@
             android:id="@+id/desc_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/label"
+            android:hint="Descrição"
+
             app:layout_constraintTop_toBottomOf="@id/nome_form_layout"
             app:layout_constraintStart_toStartOf="@id/nome_form_layout"
             app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
@@ -73,7 +75,9 @@
             android:id="@+id/valor_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/label"
+            android:hint="Valor"
+
+
             app:layout_constraintTop_toBottomOf="@id/desc_form_layout"
             app:layout_constraintStart_toStartOf="@id/nome_form_layout"
             app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
@@ -84,6 +88,7 @@
                 android:id="@+id/valor_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,7 +97,8 @@
             android:id="@+id/link_form_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/label"
+            android:hint="Link"
+
             app:layout_constraintTop_toBottomOf="@id/valor_form_layout"
             app:layout_constraintStart_toStartOf="@id/nome_form_layout"
             app:layout_constraintEnd_toEndOf="@id/nome_form_layout"
@@ -103,6 +109,7 @@
                 android:id="@+id/link_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -121,6 +128,7 @@
             app:layout_constraintTop_toBottomOf="@id/link_form_layout"
             app:layout_constraintVertical_bias="1"
             tools:text="Adicionar Desejo"
+            android:text="Adicionar Desejo"
             android:backgroundTint="@color/amarelo_wisho"/>
 
 
