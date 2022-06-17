@@ -10,7 +10,7 @@ class Desejo(
     val descricao: String,
     val valor : BigDecimal,
     val link : String,
-    val imagem : Uri? = null
+    val imagem : String? = null
 
 
 ) {

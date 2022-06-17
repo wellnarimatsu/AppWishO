@@ -18,19 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
 
-            android:scaleType="centerCrop"
-            android:clickable="true"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="8dp"
             android:background="@color/amarelo_wisho"
 
-            app:srcCompat="@drawable/img_carregar_img"
-            />
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_carregar_img" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nome_form_layout"
             android:layout_width="0dp"
@@ -129,6 +131,8 @@
             app:layout_constraintVertical_bias="1"
             tools:text="Adicionar Desejo"
             android:text="Adicionar Desejo"
+            android:textColor="@color/azul_wisho"
+            android:textSize="15sp"
             android:backgroundTint="@color/amarelo_wisho"/>
 
 

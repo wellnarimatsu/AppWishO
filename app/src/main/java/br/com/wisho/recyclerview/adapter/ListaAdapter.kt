@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.wisho.R
 import br.com.wisho.databinding.CardViewBinding
 import br.com.wisho.model.Desejo
+import coil.load
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
@@ -35,11 +36,7 @@ class ListaAdapter(
             val link = binding.linkCard
             link.text = desejos.link
 
-
-
-
-
-
+            binding.imagemCard.load(desejos.imagem)
         }
         private fun formatarParaReal(valor : BigDecimal): String{
             val formatadorMoeda = NumberFormat.getCurrencyInstance(Locale("pt","br"))
