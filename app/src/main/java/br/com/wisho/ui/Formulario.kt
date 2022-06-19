@@ -20,7 +20,7 @@ class Formulario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         configuraBotaoSalvar()
-        title="Adicionar Desejo"
+        title="Adicionando Desejo"
 
         binding.imagemForm.setOnClickListener{
 
