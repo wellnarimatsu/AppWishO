@@ -1,15 +1,11 @@
-package br.com.wisho
+package br.com.wisho.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
 import br.com.wisho.dao.DesejosDao
 import br.com.wisho.databinding.ActivityMainBinding
-import br.com.wisho.model.Desejo
 import br.com.wisho.recyclerview.adapter.ListaAdapter
-import br.com.wisho.ui.Formulario
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
