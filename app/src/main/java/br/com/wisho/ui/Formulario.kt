@@ -22,17 +22,14 @@ class Formulario : AppCompatActivity() {
         configuraBotaoSalvar()
         title="Adicionando Desejo"
 
-        binding.imagemForm.setOnClickListener{
+        binding.imagemFormulario.setOnClickListener{
 
             FormularioDialog(this).showDialog (url){ imagem->
                 url = imagem
-                binding.imagemForm.tentaCarregarImagem(url)
+                binding.imagemFormulario.tentaCarregarImagem(url)
             }
 
-
-
             }
-
 
         }
 

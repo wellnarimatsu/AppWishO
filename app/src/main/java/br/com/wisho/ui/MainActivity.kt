@@ -3,6 +3,7 @@ package br.com.wisho.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.wisho.constantes.CHAVE_DESEJO
 import br.com.wisho.dao.DesejosDao
 import br.com.wisho.databinding.ActivityMainBinding
 import br.com.wisho.recyclerview.adapter.ListaAdapter
@@ -45,6 +46,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun configuraRecyclerView(){
         binding.recyclerView.adapter = adapter
+
+        adapter.quandoClicaNoItem = {
+            val intent = Intent(this,DetalhesDesejo::class.java).apply {
+                putExtra(CHAVE_DESEJO,it)
+        }
+            startActivity(intent)
+        }
 
     }
 }

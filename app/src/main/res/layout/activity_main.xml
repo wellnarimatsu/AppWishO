@@ -27,7 +27,7 @@
         android:id="@+id/bottomAppBar"
         android:backgroundTint="@color/amarelo_wisho"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         >
 
         <ImageView
@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
-            tools:srcCompat="@drawable/img_carregar_img"
+            app:srcCompat="@drawable/img_carregar_img"
             />
 
         <com.google.android.material.textfield.TextInputLayout

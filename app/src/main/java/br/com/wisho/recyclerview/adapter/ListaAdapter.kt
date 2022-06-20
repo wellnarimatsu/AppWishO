@@ -4,44 +4,64 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import br.com.wisho.R
 import br.com.wisho.databinding.CardViewBinding
+import br.com.wisho.extensions.formatarParaReal
+import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
 import coil.load
-import java.math.BigDecimal
-import java.text.NumberFormat
 import java.util.*
 
 class ListaAdapter(
+
+
     private val context: Context,
-    desejos: List<Desejo>
+    desejos: List<Desejo>,
+    var quandoClicaNoItem: (desejo:Desejo) -> Unit = {}
 
 ) : RecyclerView.Adapter<ListaAdapter.ViewHolder>(){
 
     private val desejos = desejos.toMutableList()
 
 
-    class ViewHolder(private val binding: CardViewBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun vincular(desejos: Desejo){
+
+    inner class ViewHolder(private val binding: CardViewBinding) : RecyclerView.ViewHolder(binding.root){
+
+        private lateinit var desejo : Desejo
+
+        init {
+            itemView.setOnClickListener{
+                if (::desejo.isInitialized){
+                    quandoClicaNoItem(desejo)
+                }
+
+            }
+        }
+
+        fun vincular(desejo: Desejo){
+            this.desejo = desejo
             val nome = binding.nomeCard
-            nome.text = desejos.nome
+            nome.text = desejo.nome
             val descricao = binding.descricaoCard
-            descricao.text = desejos.descricao
+            descricao.text = desejo.descricao
             val valor = binding.valorCard
-            val valorEmMoeda: String = formatarParaReal(desejos.valor)
+            val valorEmMoeda: String = desejo.valor.formatarParaReal()
             valor.text = valorEmMoeda
             val link = binding.linkCard
-            link.text = desejos.link
+            link.text = desejo.link
 
-            binding.imagemCard.load(desejos.imagem)
+            val visibilidade = if (desejo.imagem != null){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.imagemCard.visibility = visibilidade
+
+            binding.imagemCard.tentaCarregarImagem(desejo.imagem)
         }
-        private fun formatarParaReal(valor : BigDecimal): String{
-            val formatadorMoeda = NumberFormat.getCurrencyInstance(Locale("pt","br"))
-            val valorEmMoeda : String = formatadorMoeda.format(valor)
-            return valorEmMoeda}
+
+
 
     }
 

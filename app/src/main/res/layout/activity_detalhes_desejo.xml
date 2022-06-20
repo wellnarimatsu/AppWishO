@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetalhesDesejo"
+    android:background="@color/azul_wisho">
+
+    <ImageView
+        android:id="@+id/imagem_detalhes"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/img_carregar_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/nome_detalhes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:text="MacBook air M1 8gb RAM"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_semibold_italic"
+        android:textColor="@color/amarelo_wisho"
+        app:layout_constraintEnd_toEndOf="@id/imagem_detalhes"
+        app:layout_constraintStart_toStartOf="@id/imagem_detalhes"
+        app:layout_constraintTop_toBottomOf="@id/imagem_detalhes"
+        />
+    <TextView
+        android:id="@+id/desc_detalhes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem/random"
+        android:maxLines="15"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/nome_detalhes"
+        app:layout_constraintStart_toStartOf="@id/nome_detalhes"
+        app:layout_constraintTop_toBottomOf="@id/nome_detalhes"
+
+        />
+    <TextView
+        android:id="@+id/valor_detalhes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:text="R$ 7.000,00"
+        android:inputType="numberDecimal"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/nome_detalhes"
+        app:layout_constraintEnd_toEndOf="@id/nome_detalhes"
+        app:layout_constraintTop_toBottomOf="@id/desc_detalhes"
+        android:textSize="20sp"
+        android:textColor="@color/amarelo_wisho"
+
+        />
+    <TextView
+        android:id="@+id/link_detalhes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:text="www.wellstoreletscodenow.com"
+        app:layout_constraintEnd_toEndOf="@id/nome_detalhes"
+        app:layout_constraintStart_toStartOf="@id/nome_detalhes"
+        app:layout_constraintTop_toBottomOf="@id/valor_detalhes"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

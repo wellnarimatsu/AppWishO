@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.wisho"
-    >
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="br.com.wisho">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishO">
         <activity
+            android:name=".ui.DetalhesDesejo"
+            android:exported="false" />
+        <activity
             android:name=".ui.FormularioDialog"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ui.Formulario"
             android:exported="false" />

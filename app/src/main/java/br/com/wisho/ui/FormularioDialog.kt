@@ -28,17 +28,18 @@ class FormularioDialog(private val context: Context){
                 val url = urlDialog.text.toString()
                 imagemDialog.tentaCarregarImagem(url)
 
-                AlertDialog.Builder(context)
 
-                    .setView(root)
-                    .setPositiveButton("Confirmar"){_,_->
-                        val url = urlDialog.text.toString()
-                        quandoImagemCarregada(url)
-                    }
-
-                    .setNegativeButton("Cancelar"){_,_->}
-                    .show()
             }
+            AlertDialog.Builder(context)
+
+                .setView(root)
+                .setPositiveButton("Confirmar"){_,_->
+                    val url = urlDialog.text.toString()
+                    quandoImagemCarregada(url)
+                }
+
+                .setNegativeButton("Cancelar"){_,_->}
+                .show()
         }
 
 
