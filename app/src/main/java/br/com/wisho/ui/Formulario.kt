@@ -2,7 +2,7 @@ package br.com.wisho.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.wisho.dao.DesejosDao
+import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.databinding.ActivityFormularioDesejosBinding
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
@@ -36,11 +36,14 @@ class Formulario : AppCompatActivity() {
 
 
     private fun configuraBotaoSalvar() {
-        val dao = DesejosDao()
+
+
+        val db = AppDataBase.instancia(this)
+        val desejoDao = db.desejoDao()
 
         binding.buttonAddDesejoForm.setOnClickListener {
             val novoDesejo = criaProduto()
-            dao.adiciona(novoDesejo)
+            desejoDao.salva(novoDesejo)
             finish()
 
         }

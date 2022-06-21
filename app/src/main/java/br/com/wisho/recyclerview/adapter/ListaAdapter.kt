@@ -14,9 +14,8 @@ import java.util.*
 
 class ListaAdapter(
 
-
     private val context: Context,
-    desejos: List<Desejo>,
+    desejos: List<Desejo> = emptyList(),
     var quandoClicaNoItem: (desejo:Desejo) -> Unit = {}
 
 ) : RecyclerView.Adapter<ListaAdapter.ViewHolder>(){

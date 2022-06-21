@@ -1,10 +1,10 @@
 package br.com.wisho.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.constantes.CHAVE_DESEJO
-import br.com.wisho.dao.DesejosDao
 import br.com.wisho.databinding.ActivityMainBinding
 import br.com.wisho.recyclerview.adapter.ListaAdapter
 
@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val dao = DesejosDao()
-    private val adapter =  ListaAdapter(context = this, desejos = dao.buscaTodos())
+
+    private val adapter =  ListaAdapter(context = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        adapter.atualiza(dao.buscaTodos())
+
+        val db = AppDataBase.instancia(this)
+        val desejoDao = db.desejoDao()
+
+        adapter.atualiza(desejoDao.buscaDesejos())
 
 
     }
