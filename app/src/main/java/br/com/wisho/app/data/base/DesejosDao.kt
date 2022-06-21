@@ -1,8 +1,6 @@
 package br.com.wisho.app.data.base
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import br.com.wisho.model.Desejo
 
 @Dao
@@ -13,4 +11,10 @@ interface DesejosDao {
 
     @Insert
     fun salva(vararg desejo: Desejo)
+
+    @Delete
+    fun deletar(desejo: Desejo)
+
+    @Update
+    fun editar(desejo: Desejo)
 }

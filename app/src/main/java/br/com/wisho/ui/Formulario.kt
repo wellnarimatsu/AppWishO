@@ -3,6 +3,7 @@ package br.com.wisho.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.wisho.app.data.base.AppDataBase
+import br.com.wisho.constantes.CHAVE_DESEJO
 import br.com.wisho.databinding.ActivityFormularioDesejosBinding
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
@@ -11,6 +12,7 @@ import java.math.BigDecimal
 class Formulario : AppCompatActivity() {
 
     private var url: String? = null
+    private var idDesejo =  0L
     private val binding by lazy {
         ActivityFormularioDesejosBinding.inflate(layoutInflater)
     }
@@ -20,19 +22,28 @@ class Formulario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         configuraBotaoSalvar()
-        title="Adicionando Desejo"
+        title = "Adicionando Desejo"
 
-        binding.imagemFormulario.setOnClickListener{
+        binding.imagemFormulario.setOnClickListener {
 
-            FormularioDialog(this).showDialog (url){ imagem->
+            FormularioDialog(this).showDialog(url) { imagem ->
                 url = imagem
                 binding.imagemFormulario.tentaCarregarImagem(url)
             }
 
-            }
-
         }
 
+        intent.getParcelableExtra<Desejo>(CHAVE_DESEJO)?.let { desejoCarregado ->
+            title="Editando Desejo"
+            idDesejo = desejoCarregado.id
+            binding.imagemFormulario.tentaCarregarImagem(desejoCarregado.imagem)
+            binding.nomeForm.setText(desejoCarregado.nome)
+            binding.descricaoForm.setText(desejoCarregado.descricao)
+            binding.valorForm.setText(desejoCarregado.valor.toPlainString())
+            binding.linkForm.setText(desejoCarregado.link)
+        }
+
+    }
 
 
     private fun configuraBotaoSalvar() {
@@ -43,8 +54,14 @@ class Formulario : AppCompatActivity() {
 
         binding.buttonAddDesejoForm.setOnClickListener {
             val novoDesejo = criaProduto()
-            desejoDao.salva(novoDesejo)
-            finish()
+            if(idDesejo > 0){
+                desejoDao.editar(novoDesejo)
+                finish()
+            }else{
+                desejoDao.salva(novoDesejo)
+                finish()
+
+            }
 
         }
     }
@@ -73,8 +90,6 @@ class Formulario : AppCompatActivity() {
         )
 
     }
-
-
 
 
 }
