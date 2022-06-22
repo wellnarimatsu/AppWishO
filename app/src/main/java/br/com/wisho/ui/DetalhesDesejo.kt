@@ -14,11 +14,14 @@ import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
 
 class DetalhesDesejo : AppCompatActivity() {
-
-    private lateinit var desejo: Desejo
+    private var desejoId: Long? = null
+    private var desejo : Desejo? = null
     private val binding by lazy {
         ActivityDetalhesDesejoBinding.inflate(layoutInflater)
 
+    }
+    val desejoDao by lazy {
+        AppDataBase.instancia(this).desejoDao()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +31,19 @@ class DetalhesDesejo : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        desejoId?.let{id ->
+            desejo = desejoDao.buscaPorId(id)
+        }
+        desejo?.let {
+            preencheCampos(it)
+        }?: finish()
+    }
+
     private fun tentaCarregarProduto() {
         intent.getParcelableExtra<Desejo>(CHAVE_DESEJO)?.let { desejoCarregado ->
-            preencheCampos(desejoCarregado)
-            desejo = desejoCarregado
+            desejoId = desejoCarregado.id
 
 
         } ?: finish()
@@ -54,13 +66,11 @@ class DetalhesDesejo : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (::desejo.isInitialized) {
-            val db = AppDataBase.instancia(this)
-            val desejoDao = db.desejoDao()
+
 
             when (item.itemId) {
                 R.id.menu_delete -> {
-                    desejoDao.deletar(desejo)
+                    desejo?.let { desejoDao.deletar(it) }
                 }
                 R.id.menu_editar -> {
                     Intent(this, Formulario::class.java).apply {
@@ -71,7 +81,7 @@ class DetalhesDesejo : AppCompatActivity() {
                 }
 
             }
-        }
+
 
         return super.onOptionsItemSelected(item)
     }

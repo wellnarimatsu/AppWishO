@@ -36,6 +36,7 @@ class Formulario : AppCompatActivity() {
         intent.getParcelableExtra<Desejo>(CHAVE_DESEJO)?.let { desejoCarregado ->
             title="Editando Desejo"
             idDesejo = desejoCarregado.id
+            url = desejoCarregado.imagem
             binding.imagemFormulario.tentaCarregarImagem(desejoCarregado.imagem)
             binding.nomeForm.setText(desejoCarregado.nome)
             binding.descricaoForm.setText(desejoCarregado.descricao)
@@ -44,6 +45,7 @@ class Formulario : AppCompatActivity() {
         }
 
     }
+
 
 
     private fun configuraBotaoSalvar() {
@@ -82,6 +84,7 @@ class Formulario : AppCompatActivity() {
         val link = campoLink.text.toString()
 
         return Desejo(
+            id = idDesejo,
             nome = nome,
             descricao = desc,
             valor = valor,

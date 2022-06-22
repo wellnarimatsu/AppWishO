@@ -17,4 +17,7 @@ interface DesejosDao {
 
     @Update
     fun editar(desejo: Desejo)
+
+    @Query("SELECT * FROM Desejo WHERE id = :id")
+    fun buscaPorId(id:Long) : Desejo?
 }
