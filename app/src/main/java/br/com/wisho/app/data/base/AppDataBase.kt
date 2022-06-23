@@ -1,6 +1,7 @@
 package br.com.wisho.app.data.base
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -8,7 +9,7 @@ import br.com.wisho.Converters.Converter
 import br.com.wisho.model.Desejo
 
 
-
+@Database(entities = [Desejo::class], version = 1)
 @TypeConverters(Converter::class)
 abstract class AppDataBase : RoomDatabase() {
 

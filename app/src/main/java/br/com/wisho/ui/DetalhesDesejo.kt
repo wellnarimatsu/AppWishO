@@ -1,10 +1,13 @@
 package br.com.wisho.ui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import br.com.wisho.R
 import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.constantes.CHAVE_DESEJO
@@ -29,7 +32,19 @@ class DetalhesDesejo : AppCompatActivity() {
         setContentView(binding.root)
         tentaCarregarProduto()
 
+
+        binding.linkDetalhes.setOnClickListener {
+
+            val queryUri = Uri.parse("")
+            val intentGoogle = Intent(Intent.ACTION_VIEW,queryUri)
+            val intent = Intent.createChooser(intentGoogle, "Abrir site")
+
+            startActivity(intent)
+        }
     }
+
+
+
 
     override fun onResume() {
         super.onResume()
@@ -70,7 +85,8 @@ class DetalhesDesejo : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.menu_delete -> {
-                    desejo?.let { desejoDao.deletar(it) }
+                    desejo?.let { desejoDao.deletar(it)
+                    finish()}
                 }
                 R.id.menu_editar -> {
                     Intent(this, Formulario::class.java).apply {

@@ -2,6 +2,8 @@ package br.com.wisho.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.constantes.CHAVE_DESEJO
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         configuraFab()
         configuraRecyclerView()
+
+
 
     }
 
