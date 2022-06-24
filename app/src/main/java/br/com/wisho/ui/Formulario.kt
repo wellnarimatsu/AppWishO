@@ -3,7 +3,8 @@ package br.com.wisho.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.wisho.app.data.base.AppDataBase
-import br.com.wisho.constantes.CHAVE_DESEJO
+import br.com.wisho.app.data.base.DesejosDao
+import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityFormularioDesejosBinding
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
@@ -15,6 +16,11 @@ class Formulario : AppCompatActivity() {
     private var idDesejo =  0L
     private val binding by lazy {
         ActivityFormularioDesejosBinding.inflate(layoutInflater)
+    }
+    private val desejoDao: DesejosDao by lazy {
+
+        val db = AppDataBase.instancia(this)
+        db.desejoDao()
     }
 
 
@@ -33,38 +39,55 @@ class Formulario : AppCompatActivity() {
 
         }
 
-        intent.getParcelableExtra<Desejo>(CHAVE_DESEJO)?.let { desejoCarregado ->
-            title="Editando Desejo"
-            idDesejo = desejoCarregado.id
-            url = desejoCarregado.imagem
-            binding.imagemFormulario.tentaCarregarImagem(desejoCarregado.imagem)
-            binding.nomeForm.setText(desejoCarregado.nome)
-            binding.descricaoForm.setText(desejoCarregado.descricao)
-            binding.valorForm.setText(desejoCarregado.valor.toPlainString())
-            binding.linkForm.setText(desejoCarregado.link)
+        tentaCarregarDesejo()
+
+    }
+
+    private fun tentaCarregarDesejo() {
+        idDesejo = intent.getLongExtra(CHAVE_DESEJO_ID,0L)
         }
+
+
+    override fun onResume() {
+        super.onResume()
+        tentaBuscarDesejo()
+    }
+    private fun tentaBuscarDesejo(){
+        title="Editando Desejo"
+        desejoDao.buscaPorId(idDesejo)?.let {
+            preencheCampos(it)
+        }
+
+
 
     }
 
 
+    private fun preencheCampos(desejoCarregado: Desejo) {
+        idDesejo = desejoCarregado.id
+        url = desejoCarregado.imagem
+        binding.imagemFormulario.tentaCarregarImagem(desejoCarregado.imagem)
+        binding.nomeForm.setText(desejoCarregado.nome)
+        binding.descricaoForm.setText(desejoCarregado.descricao)
+        binding.valorForm.setText(desejoCarregado.valor.toPlainString())
+        binding.linkForm.setText(desejoCarregado.link)
+    }
+
 
     private fun configuraBotaoSalvar() {
-
-
-        val db = AppDataBase.instancia(this)
-        val desejoDao = db.desejoDao()
-
         binding.buttonAddDesejoForm.setOnClickListener {
             val novoDesejo = criaProduto()
-            if(idDesejo > 0){
-                desejoDao.editar(novoDesejo)
-                finish()
-            }else{
-                desejoDao.salva(novoDesejo)
-                finish()
+//            if(idDesejo > 0){
+//                desejoDao.editar(novoDesejo)
+//                finish()
+//            }else{
+//                desejoDao.salva(novoDesejo)
+//
+//
+//            }
 
-            }
-
+            desejoDao.salva(novoDesejo)
+            finish()
         }
     }
 

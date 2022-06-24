@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import br.com.wisho.R
 import br.com.wisho.app.data.base.AppDataBase
-import br.com.wisho.constantes.CHAVE_DESEJO
+import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityDetalhesDesejoBinding
 import br.com.wisho.extensions.formatarParaReal
 import br.com.wisho.extensions.tentaCarregarImagem
@@ -48,20 +48,22 @@ class DetalhesDesejo : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        desejoId?.let{id ->
+        buscaDesejoNoBanco()
+    }
+
+    private fun buscaDesejoNoBanco() {
+        desejoId?.let { id ->
             desejo = desejoDao.buscaPorId(id)
         }
         desejo?.let {
             preencheCampos(it)
-        }?: finish()
+        } ?: finish()
     }
 
     private fun tentaCarregarProduto() {
-        intent.getParcelableExtra<Desejo>(CHAVE_DESEJO)?.let { desejoCarregado ->
-            desejoId = desejoCarregado.id
+        desejoId = intent.getLongExtra(CHAVE_DESEJO_ID,0L)
 
-
-        } ?: finish()
+        finish()
     }
 
     private fun preencheCampos(desejoCarregado: Desejo) {
@@ -90,7 +92,7 @@ class DetalhesDesejo : AppCompatActivity() {
                 }
                 R.id.menu_editar -> {
                     Intent(this, Formulario::class.java).apply {
-                        putExtra(CHAVE_DESEJO, desejo)
+                        putExtra(CHAVE_DESEJO_ID, desejoId)
                         startActivity(this)
                     }
 

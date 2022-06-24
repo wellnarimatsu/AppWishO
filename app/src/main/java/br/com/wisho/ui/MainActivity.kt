@@ -6,7 +6,8 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import br.com.wisho.app.data.base.AppDataBase
-import br.com.wisho.constantes.CHAVE_DESEJO
+
+import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityMainBinding
 import br.com.wisho.recyclerview.adapter.ListaAdapter
 
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.quandoClicaNoItem = {
             val intent = Intent(this,DetalhesDesejo::class.java).apply {
-                putExtra(CHAVE_DESEJO,it)
+                putExtra(CHAVE_DESEJO_ID,it.id)
         }
             startActivity(intent)
         }

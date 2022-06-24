@@ -9,14 +9,14 @@ interface DesejosDao {
     fun buscaDesejos(): List<Desejo>
 
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun salva(vararg desejo: Desejo)
 
     @Delete
     fun deletar(desejo: Desejo)
 
-    @Update
-    fun editar(desejo: Desejo)
+//    @Update
+//    fun editar(desejo: Desejo)
 
     @Query("SELECT * FROM Desejo WHERE id = :id")
     fun buscaPorId(id:Long) : Desejo?

@@ -9,7 +9,7 @@ import br.com.wisho.Converters.Converter
 import br.com.wisho.model.Desejo
 
 
-@Database(entities = [Desejo::class], version = 1)
+@Database(entities = [Desejo::class], version = 1, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class AppDataBase : RoomDatabase() {
 
