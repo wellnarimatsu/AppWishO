@@ -2,12 +2,14 @@ package br.com.wisho.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.app.data.base.DesejosDao
 import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityFormularioDesejosBinding
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
+import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 class Formulario : AppCompatActivity() {
@@ -54,9 +56,14 @@ class Formulario : AppCompatActivity() {
     }
     private fun tentaBuscarDesejo(){
         title="Editando Desejo"
-        desejoDao.buscaPorId(idDesejo)?.let {
-            preencheCampos(it)
+
+        lifecycleScope.launch{
+            desejoDao.buscaPorId(idDesejo)?.let {
+                preencheCampos(it)
+            }
+
         }
+
 
 
 
@@ -86,8 +93,10 @@ class Formulario : AppCompatActivity() {
 //
 //            }
 
-            desejoDao.salva(novoDesejo)
-            finish()
+            lifecycleScope.launch {
+                desejoDao.salva(novoDesejo)
+                finish()
+            }
         }
     }
 

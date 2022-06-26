@@ -2,12 +2,11 @@ package br.com.wisho.ui
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import br.com.wisho.R
 import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.constantes.CHAVE_DESEJO_ID
@@ -15,6 +14,7 @@ import br.com.wisho.databinding.ActivityDetalhesDesejoBinding
 import br.com.wisho.extensions.formatarParaReal
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
+import kotlinx.coroutines.launch
 
 class DetalhesDesejo : AppCompatActivity() {
     private var desejoId: Long? = null
@@ -52,12 +52,17 @@ class DetalhesDesejo : AppCompatActivity() {
     }
 
     private fun buscaDesejoNoBanco() {
+
+    lifecycleScope.launch{
         desejoId?.let { id ->
             desejo = desejoDao.buscaPorId(id)
         }
         desejo?.let {
             preencheCampos(it)
         } ?: finish()
+
+    }
+
     }
 
     private fun tentaCarregarProduto() {
@@ -87,8 +92,13 @@ class DetalhesDesejo : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.menu_delete -> {
-                    desejo?.let { desejoDao.deletar(it)
-                    finish()}
+
+                    lifecycleScope.launch{
+                        desejo?.let { desejoDao.deletar(it)
+                            finish()}
+                    }
+
+
                 }
                 R.id.menu_editar -> {
                     Intent(this, Formulario::class.java).apply {
