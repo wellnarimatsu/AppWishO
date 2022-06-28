@@ -9,6 +9,7 @@ import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityFormularioDesejosBinding
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
@@ -55,14 +56,19 @@ class Formulario : AppCompatActivity() {
         tentaBuscarDesejo()
     }
     private fun tentaBuscarDesejo(){
-        title="Editando Desejo"
 
-        lifecycleScope.launch{
-            desejoDao.buscaPorId(idDesejo)?.let {
-                preencheCampos(it)
+
+            lifecycleScope.launch {
+                desejoDao.buscaPorId(idDesejo).collect{
+                    it?.let { desejoEncontrado ->
+                        title="Editando Desejo"
+                    preencheCampos(desejoEncontrado)
+                }
+                }
             }
 
-        }
+
+
 
 
 

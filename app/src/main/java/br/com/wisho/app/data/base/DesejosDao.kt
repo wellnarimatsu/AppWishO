@@ -2,15 +2,16 @@ package br.com.wisho.app.data.base
 
 import androidx.room.*
 import br.com.wisho.model.Desejo
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DesejosDao {
     @Query("SELECT * FROM Desejo")
-    suspend fun buscaDesejos(): List<Desejo>
+    fun buscaDesejos(): Flow<List<Desejo>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     suspend fun salva(vararg desejo: Desejo)
+    suspend fun salva(vararg desejo: Desejo)
 
     @Delete
     suspend fun deletar(desejo: Desejo)
@@ -19,5 +20,5 @@ interface DesejosDao {
 //    fun editar(desejo: Desejo)
 
     @Query("SELECT * FROM Desejo WHERE id = :id")
-    suspend fun buscaPorId(id:Long) : Desejo?
+    fun buscaPorId(id:Long) : Flow<Desejo?>
 }

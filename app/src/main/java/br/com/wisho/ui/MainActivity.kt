@@ -8,12 +8,18 @@ import br.com.wisho.app.data.base.AppDataBase
 import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityMainBinding
 import br.com.wisho.recyclerview.adapter.ListaAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
+    }
+    private val dao by lazy {
+        val db = AppDataBase.instancia(this)
+        db.desejoDao()
+
     }
 
 
@@ -25,21 +31,17 @@ class MainActivity : AppCompatActivity() {
         configuraFab()
         configuraRecyclerView()
 
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        val db = AppDataBase.instancia(this)
-        val desejoDao = db.desejoDao()
         lifecycleScope.launch {
-            adapter.atualiza(desejoDao.buscaDesejos())
+            dao.buscaDesejos().collect { desejos ->
+                adapter.atualiza(desejos)
+            }
+
         }
 
 
-
     }
+
+
 
     private fun configuraFab() {
         val fab = binding.fabButton

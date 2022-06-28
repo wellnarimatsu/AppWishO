@@ -14,11 +14,13 @@ import br.com.wisho.databinding.ActivityDetalhesDesejoBinding
 import br.com.wisho.extensions.formatarParaReal
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.launch
 
 class DetalhesDesejo : AppCompatActivity() {
-    private var desejoId: Long? = null
-    private var desejo : Desejo? = null
+
+    private var desejoId: Long = 0L
+    private var desejo: Desejo? = null
     private val binding by lazy {
         ActivityDetalhesDesejoBinding.inflate(layoutInflater)
 
@@ -32,18 +34,19 @@ class DetalhesDesejo : AppCompatActivity() {
         setContentView(binding.root)
         tentaCarregarProduto()
 
-
         binding.linkDetalhes.setOnClickListener {
 
-            val queryUri = Uri.parse("")
+            val campoLink = binding.linkDetalhes
+            val link = campoLink.text.toString()
+            val queryUri = Uri.parse(link)
             val intentGoogle = Intent(Intent.ACTION_VIEW,queryUri)
             val intent = Intent.createChooser(intentGoogle, "Abrir site")
 
             startActivity(intent)
         }
+
+
     }
-
-
 
 
     override fun onResume() {
@@ -53,22 +56,25 @@ class DetalhesDesejo : AppCompatActivity() {
 
     private fun buscaDesejoNoBanco() {
 
-    lifecycleScope.launch{
-        desejoId?.let { id ->
-            desejo = desejoDao.buscaPorId(id)
-        }
-        desejo?.let {
-            preencheCampos(it)
-        } ?: finish()
+        lifecycleScope.launch {
+            desejoDao.buscaPorId(desejoId).collect { desejoEncontrado ->
 
-    }
+                desejo = desejoEncontrado
+                desejo?.let {
+                    preencheCampos(it)
+                } ?: finish()
+
+            }
+
+
+        }
+
 
     }
 
     private fun tentaCarregarProduto() {
-        desejoId = intent.getLongExtra(CHAVE_DESEJO_ID,0L)
+        desejoId = intent.getLongExtra(CHAVE_DESEJO_ID, 0L)
 
-        finish()
     }
 
     private fun preencheCampos(desejoCarregado: Desejo) {
@@ -78,6 +84,7 @@ class DetalhesDesejo : AppCompatActivity() {
             descDetalhes.text = desejoCarregado.descricao
             valorDetalhes.text = desejoCarregado.valor.formatarParaReal()
             linkDetalhes.text = desejoCarregado.link
+
 
         }
     }
@@ -90,25 +97,27 @@ class DetalhesDesejo : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
 
-            when (item.itemId) {
-                R.id.menu_delete -> {
+        when (item.itemId) {
+            R.id.menu_delete -> {
 
-                    lifecycleScope.launch{
-                        desejo?.let { desejoDao.deletar(it)
-                            finish()}
+                lifecycleScope.launch {
+                    desejo?.let {
+                        desejoDao.deletar(it)
+                        finish()
                     }
-
-
                 }
-                R.id.menu_editar -> {
-                    Intent(this, Formulario::class.java).apply {
-                        putExtra(CHAVE_DESEJO_ID, desejoId)
-                        startActivity(this)
-                    }
 
+
+            }
+            R.id.menu_editar -> {
+                Intent(this, Formulario::class.java).apply {
+                    putExtra(CHAVE_DESEJO_ID, desejoId)
+                    startActivity(this)
                 }
 
             }
+
+        }
 
 
         return super.onOptionsItemSelected(item)
