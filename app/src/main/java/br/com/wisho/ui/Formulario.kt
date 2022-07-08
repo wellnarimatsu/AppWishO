@@ -9,14 +9,13 @@ import br.com.wisho.constantes.CHAVE_DESEJO_ID
 import br.com.wisho.databinding.ActivityFormularioDesejosBinding
 import br.com.wisho.extensions.tentaCarregarImagem
 import br.com.wisho.model.Desejo
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 class Formulario : AppCompatActivity() {
 
     private var url: String? = null
-    private var idDesejo =  0L
+    private var idDesejo = 0L
     private val binding by lazy {
         ActivityFormularioDesejosBinding.inflate(layoutInflater)
     }
@@ -39,7 +38,6 @@ class Formulario : AppCompatActivity() {
                 url = imagem
                 binding.imagemFormulario.tentaCarregarImagem(url)
             }
-
         }
 
         tentaCarregarDesejo()
@@ -47,37 +45,31 @@ class Formulario : AppCompatActivity() {
     }
 
     private fun tentaCarregarDesejo() {
-        idDesejo = intent.getLongExtra(CHAVE_DESEJO_ID,0L)
-        }
+        idDesejo = intent.getLongExtra(CHAVE_DESEJO_ID, 0L)
+    }
 
 
     override fun onResume() {
         super.onResume()
         tentaBuscarDesejo()
     }
-    private fun tentaBuscarDesejo(){
+
+    private fun tentaBuscarDesejo() {
 
 
-            lifecycleScope.launch {
-                desejoDao.buscaPorId(idDesejo).collect{
-                    it?.let { desejoEncontrado ->
-                        title="Editando Desejo"
+        lifecycleScope.launch {
+            desejoDao.buscaPorId(idDesejo).collect {
+                it?.let { desejoEncontrado ->
+                    title = "Editando Desejo"
                     preencheCampos(desejoEncontrado)
                 }
-                }
             }
-
-
-
-
-
-
-
+        }
     }
 
 
     private fun preencheCampos(desejoCarregado: Desejo) {
-        idDesejo = desejoCarregado.id
+//        idDesejo = desejoCarregado.id
         url = desejoCarregado.imagem
         binding.imagemFormulario.tentaCarregarImagem(desejoCarregado.imagem)
         binding.nomeForm.setText(desejoCarregado.nome)
@@ -89,7 +81,7 @@ class Formulario : AppCompatActivity() {
 
     private fun configuraBotaoSalvar() {
         binding.buttonAddDesejoForm.setOnClickListener {
-            val novoDesejo = criaProduto()
+            val novoDesejo = criaDesejo()
 //            if(idDesejo > 0){
 //                desejoDao.editar(novoDesejo)
 //                finish()
@@ -106,7 +98,7 @@ class Formulario : AppCompatActivity() {
         }
     }
 
-    private fun criaProduto(): Desejo {
+    private fun criaDesejo(): Desejo {
         val campoNome = binding.nomeForm
         val nome = campoNome.text.toString()
         val campoDesc = binding.descricaoForm
@@ -129,8 +121,5 @@ class Formulario : AppCompatActivity() {
             link = link,
             imagem = url
         )
-
     }
-
-
 }

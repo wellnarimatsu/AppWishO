@@ -35,10 +35,7 @@ class MainActivity : AppCompatActivity() {
             dao.buscaDesejos().collect { desejos ->
                 adapter.atualiza(desejos)
             }
-
         }
-
-
     }
 
 

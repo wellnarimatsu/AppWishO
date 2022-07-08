@@ -14,12 +14,16 @@ import br.com.wisho.model.Desejo
 abstract class AppDataBase : RoomDatabase() {
     abstract fun desejoDao(): DesejosDao
 
-
     companion object {
+        @Volatile
+        private var db: AppDataBase? = null
         fun instancia(context: Context): AppDataBase {
             return Room.databaseBuilder(context, AppDataBase::class.java, "wisho.db")
-                .allowMainThreadQueries()
+
                 .build()
+                .also {
+                    db = it
+                }
         }
     }
 }
