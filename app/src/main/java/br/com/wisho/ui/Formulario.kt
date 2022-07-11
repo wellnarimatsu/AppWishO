@@ -14,11 +14,11 @@ import java.math.BigDecimal
 
 class Formulario : AppCompatActivity() {
 
-    private var url: String? = null
-    private var idDesejo = 0L
     private val binding by lazy {
         ActivityFormularioDesejosBinding.inflate(layoutInflater)
     }
+    private var url: String? = null
+    private var idDesejo = 0L
     private val desejoDao: DesejosDao by lazy {
 
         val db = AppDataBase.instancia(this)

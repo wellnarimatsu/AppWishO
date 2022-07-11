@@ -18,7 +18,7 @@ abstract class AppDataBase : RoomDatabase() {
         @Volatile
         private var db: AppDataBase? = null
         fun instancia(context: Context): AppDataBase {
-            return Room.databaseBuilder(context, AppDataBase::class.java, "wisho.db")
+            return db?:Room.databaseBuilder(context, AppDataBase::class.java, "wisho.db")
 
                 .build()
                 .also {
