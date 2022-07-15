@@ -8,6 +8,19 @@
     tools:context=".ui.MainActivity"
     android:background="@color/azul_wisho">
 
+    <TextView
+        android:id="@+id/msg_semDesejos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Sem Desejos"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:visibility="gone"
+
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -34,10 +47,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-
-
-
 
         tools:ignore="BottomAppBar" />
 

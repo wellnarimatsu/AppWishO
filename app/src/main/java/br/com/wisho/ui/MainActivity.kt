@@ -2,6 +2,8 @@ package br.com.wisho.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import br.com.wisho.app.data.base.AppDataBase
@@ -31,13 +33,11 @@ class MainActivity : AppCompatActivity() {
         configuraFab()
         configuraRecyclerView()
 
+
         lifecycleScope.launch {
-            dao.buscaDesejos().collect { desejos ->
-                adapter.atualiza(desejos)
-            }
+          buscaDesejos()
         }
     }
-
 
 
     private fun configuraFab() {
@@ -64,5 +64,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private suspend fun buscaDesejos() {
+        dao.buscaDesejos()
+            .collect { desejoEncontrado ->
+                binding.msgSemDesejos.visibility =
+                if (desejoEncontrado.isEmpty()) {
+                    binding.recyclerView.visibility = GONE
+                    View.VISIBLE
+                } else {
+                    binding.recyclerView.visibility = View.VISIBLE
+                    adapter.atualiza(desejoEncontrado)
+                    GONE
+                }
+
+
+        }
     }
 }
