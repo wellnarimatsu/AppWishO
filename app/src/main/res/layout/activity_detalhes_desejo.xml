@@ -59,19 +59,19 @@
         android:textColor="@color/amarelo_wisho"
 
         />
-    <TextView
-        android:id="@+id/link_detalhes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        tools:text="www.wellstoreletscodenow.com"
-        app:layout_constraintEnd_toEndOf="@id/nome_detalhes"
-        app:layout_constraintStart_toStartOf="@id/nome_detalhes"
-        app:layout_constraintTop_toBottomOf="@id/valor_detalhes"
-        android:textSize="16sp"
-        android:textColor="@color/white"
+<!--    <TextView-->
+<!--        android:id="@+id/link_detalhes"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        tools:text="www.wellstoreletscodenow.com"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/nome_detalhes"-->
+<!--        app:layout_constraintStart_toStartOf="@id/nome_detalhes"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/valor_detalhes"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@color/white"-->
 
-        />
+<!--        />-->
 
 
 

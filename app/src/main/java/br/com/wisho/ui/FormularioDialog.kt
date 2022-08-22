@@ -1,14 +1,10 @@
 package br.com.wisho.ui
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater.from
 import androidx.appcompat.app.AlertDialog
-import br.com.wisho.R
 import br.com.wisho.databinding.FormularioDialogBinding
 import br.com.wisho.extensions.tentaCarregarImagem
-import coil.load
 
 class FormularioDialog(private val context: Context){
 

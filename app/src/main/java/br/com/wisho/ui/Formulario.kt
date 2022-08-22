@@ -75,7 +75,7 @@ class Formulario : AppCompatActivity() {
         binding.nomeForm.setText(desejoCarregado.nome)
         binding.descricaoForm.setText(desejoCarregado.descricao)
         binding.valorForm.setText(desejoCarregado.valor.toPlainString())
-        binding.linkForm.setText(desejoCarregado.link)
+//        binding.linkForm.setText(desejoCarregado.link)
     }
 
 
@@ -110,15 +110,15 @@ class Formulario : AppCompatActivity() {
         } else {
             BigDecimal(valorEmTexto)
         }
-        val campoLink = binding.linkForm
-        val link = campoLink.text.toString()
+//        val campoLink = binding.linkForm
+//        val link = campoLink.text.toString()
 
         return Desejo(
             id = idDesejo,
             nome = nome,
             descricao = desc,
             valor = valor,
-            link = link,
+//            link = link,
             imagem = url
         )
     }

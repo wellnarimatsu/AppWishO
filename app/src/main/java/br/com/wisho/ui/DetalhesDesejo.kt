@@ -83,7 +83,7 @@ class DetalhesDesejo : AppCompatActivity() {
             nomeDetalhes.text = desejoCarregado.nome
             descDetalhes.text = desejoCarregado.descricao
             valorDetalhes.text = desejoCarregado.valor.formatarParaReal()
-            linkDetalhes.text = desejoCarregado.link
+//            linkDetalhes.text = desejoCarregado.link
 
 
         }

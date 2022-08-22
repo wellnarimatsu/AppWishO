@@ -47,8 +47,8 @@ class ListaAdapter(
             val valor = binding.valorCard
             val valorEmMoeda: String = desejo.valor.formatarParaReal()
             valor.text = valorEmMoeda
-            val link = binding.linkCard
-            link.text = desejo.link
+//            val link = binding.linkCard
+//            link.text = desejo.link
 
             val visibilidade = if (desejo.imagem != null){
                 View.VISIBLE
