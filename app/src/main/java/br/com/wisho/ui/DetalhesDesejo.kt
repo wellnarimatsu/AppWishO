@@ -34,16 +34,16 @@ class DetalhesDesejo : AppCompatActivity() {
         setContentView(binding.root)
         tentaCarregarProduto()
 
-//        binding.linkDetalhes.setOnClickListener {
-//
-//            val campoLink = binding.linkDetalhes
-//            val link = campoLink.text.toString()
-//            val queryUri = Uri.parse(link)
-//            val intentGoogle = Intent(Intent.ACTION_VIEW,queryUri)
-//            val intent = Intent.createChooser(intentGoogle, "Abrir site")
-//
-//            startActivity(intent)
-//        }
+        binding.linkDetalhes.setOnClickListener {
+
+            val campoLink = binding.linkDetalhes
+            val link = campoLink.text.toString()
+            val queryUri = Uri.parse(link)
+            val intentGoogle = Intent(Intent.ACTION_VIEW,queryUri)
+            val intent = Intent.createChooser(intentGoogle, "Abrir site")
+
+            startActivity(intent)
+        }
 
 
     }
@@ -83,7 +83,7 @@ class DetalhesDesejo : AppCompatActivity() {
             nomeDetalhes.text = desejoCarregado.nome
             descDetalhes.text = desejoCarregado.descricao
             valorDetalhes.text = desejoCarregado.valor.formatarParaReal()
-//            linkDetalhes.text = desejoCarregado.link
+            linkDetalhes.text = desejoCarregado.link
 
 
         }
